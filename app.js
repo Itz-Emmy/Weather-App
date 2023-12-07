@@ -5,11 +5,11 @@ const city = document.querySelector(".city p");
 const citySearch = document.querySelector(".search");
 
 const date = new Date();
-const time = date.toLocaleTimeString([], {
-  hour: "2-digit",
-  minute: "2-digit",
-  hour12: true,
-});
+let hours = date.getHours();
+const minutes = date.getMinutes();
+const ampm = hours >= 12 ? "pm" : "am";
+
+hours = hours % 12 || 12;
 
 const daysOfWeek = [
   "Sunday",
@@ -59,7 +59,9 @@ const daySuffix = getDaySuffix(day);
 
 const currentDate = document.querySelector(".date p");
 const currentTime = document.querySelector(".time p");
-currentTime.innerText = `${time} West African Time`;
+currentTime.innerText = `${hours}:${
+  minutes < 10 ? "0" : ""
+}${minutes} ${ampm} West African Time`;
 currentDate.innerText = `${dayOfWeek} ${day}${daySuffix} ${month} ${year}`;
 const temp = document.querySelector(".temp");
 const minMaxTemp = document.querySelector(".hi-low p");
