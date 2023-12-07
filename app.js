@@ -78,7 +78,7 @@ const getWeatherResults = (query) => {
     .then((data) => {
       let lon = data[0].lon;
       let lat = data[0].lat;
-      const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${query}&units=metric&lat=${lat}&lon=${lon}&appid=${apiKey}`;
+      const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${query}&units=metric&appid=${apiKey}`;
       fetch(apiUrl)
         .then((response) => response.json())
         .then((data) => {
