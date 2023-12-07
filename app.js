@@ -65,50 +65,46 @@ const images = [
   "cloudy.avif",
 ];
 
+const getWeatherResults = (query) => {
+  const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${query}&units=metric&appid=${apiKey}`;
+  fetch(apiUrl)
+    .then((response) => response.json())
+    .then((data) => {
+      city.innerText = `${data.name}, ${data.sys.country}`;
+      temp.innerText = `${data.main.temp}°c`;
+      weather.innerText = data.weather[0].description;
+      minMaxTemp.innerText = `${data.main.temp_min}°c / ${data.main.temp_max}°c`;
+      if (weather.innerText.includes("Clear")) {
+        const body = document.body;
+        body.style.backgroundImage = `url('./${images[0]}')`;
+      }
+      if (weather.innerText.includes("Rain")) {
+        const body = document.body;
+        body.style.backgroundImage = `url('./${images[1]}')`;
+      }
+      if (weather.innerText.includes("Snow")) {
+        const body = document.body;
+        body.style.backgroundImage = `url('./${images[2]}')`;
+      }
+      if (weather.innerText.includes("Sun")) {
+        const body = document.body;
+        body.style.backgroundImage = `url('./${images[3]}')`;
+      }
+      if (weather.innerText.includes("Cloud")) {
+        const body = document.body;
+        body.style.backgroundImage = `url('./${images[4]}')`;
+      }
+    })
+    .catch((error) => {
+      console.error("Error getting city", error);
+      alert(
+        `Check for possible error in city name. If city name is separated by '-', search with either parts of the name.`
+      );
+    });
+};
+
 citySearch.addEventListener("keydown", (event) => {
   if (event.key === "Enter") {
     getWeatherResults(citySearch.value);
   }
 });
-
-const getWeatherResults = (query) => {
-  fetch(apiUrl)
-    .then((cityData) => cityData.json())
-    .then((data) => {
-      const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${query}&units=metric&appid=${apiKey}`;
-      fetch(apiUrl)
-        .then((response) => response.json())
-        .then((data) => {
-          city.innerText = `${data.name}, ${data.sys.country}`;
-          temp.innerText = `${data.main.temp}°c`;
-          weather.innerText = data.weather[0].description;
-          minMaxTemp.innerText = `${data.main.temp_min}°c / ${data.main.temp_max}°c`;
-          if (weather.innerText.includes("Clear")) {
-            const body = document.body;
-            body.style.backgroundImage = `url('./${images[0]}')`;
-          }
-          if (weather.innerText.includes("Rain")) {
-            const body = document.body;
-            body.style.backgroundImage = `url('./${images[1]}')`;
-          }
-          if (weather.innerText.includes("Snow")) {
-            const body = document.body;
-            body.style.backgroundImage = `url('./${images[2]}')`;
-          }
-          if (weather.innerText.includes("Sun")) {
-            const body = document.body;
-            body.style.backgroundImage = `url('./${images[3]}')`;
-          }
-          if (weather.innerText.includes("Cloud")) {
-            const body = document.body;
-            body.style.backgroundImage = `url('./${images[4]}')`;
-          }
-        })
-        .catch((error) => {
-          console.error("Error getting city", error);
-          alert(
-            `Posisble error in city name. If city name is separated by '-', search with either parts of the name.`
-          );
-        });
-    });
-};
