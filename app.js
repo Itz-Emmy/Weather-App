@@ -59,7 +59,7 @@ const daySuffix = getDaySuffix(day);
 
 const currentDate = document.querySelector(".date p");
 const currentTime = document.querySelector(".time p");
-currentTime.innerText = `${time}`;
+currentTime.innerText = `${time} West African Time`;
 currentDate.innerText = `${dayOfWeek} ${day}${daySuffix} ${month} ${year}`;
 const temp = document.querySelector(".temp");
 const minMaxTemp = document.querySelector(".hi-low p");
