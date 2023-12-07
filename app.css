@@ -74,9 +74,11 @@ main {
   margin-top: 50px;
 }
 
-.location .date {
+.location .date,
+.time {
   color: #fff;
   font-size: 1rem;
+  padding: 10px 0;
 }
 
 .current .temp {

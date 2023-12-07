@@ -5,6 +5,11 @@ const city = document.querySelector(".city p");
 const citySearch = document.querySelector(".search");
 
 const date = new Date();
+const time = date.toLocaleTimeString([], {
+  hour: "2-digit",
+  minute: "2-digit",
+  hour12: true,
+});
 
 const daysOfWeek = [
   "Sunday",
@@ -53,6 +58,8 @@ const getDaySuffix = (day) => {
 const daySuffix = getDaySuffix(day);
 
 const currentDate = document.querySelector(".date p");
+const currentTime = document.querySelector(".time p");
+currentTime.innerText = `${time}`;
 currentDate.innerText = `${dayOfWeek} ${day}${daySuffix} ${month} ${year}`;
 const temp = document.querySelector(".temp");
 const minMaxTemp = document.querySelector(".hi-low p");
