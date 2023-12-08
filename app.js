@@ -73,6 +73,7 @@ const images = [
   "sunny.avif",
   "cloudy.avif",
   "drizzle.avif",
+  "fog.avif",
 ];
 
 const getWeatherResults = (query) => {
@@ -107,6 +108,10 @@ const getWeatherResults = (query) => {
       if (weather.innerText.includes("Drizz")) {
         const body = document.body;
         body.style.backgroundImage = `url('./${images[5]}')`;
+      }
+      if (weather.innerText.includes("Fog")) {
+        const body = document.body;
+        body.style.backgroundImage = `url('./${images[6]}')`;
       }
     })
     .catch((error) => {
